@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.coinvert.model.ExchangeRateResponse;
 import com.example.coinvert.model.ExchangeRateService;
+import com.example.coinvert.utils.NavBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -56,24 +57,9 @@ public class ConvertActivity extends AppCompatActivity {
         TextView resultTextView = findViewById(R.id.convertedAmountTextView); // Conversion result
         TextView exchangeRateTextView = findViewById(R.id.exchangeRateTextView);
 
-        // Find the BottomNavigationView
+        // Handle Navigation through bottom navbar
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
-
-        // Set the listener for bottom navigation item clicks
-        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                // Handle item selection
-                if (item.getItemId() == R.id.menu_profile) {
-                    startActivity(new Intent(ConvertActivity.this, ProfileActivity.class)); // Open ProfileActivity
-                } else if (item.getItemId() == R.id.menu_convert) {
-                    startActivity(new Intent(ConvertActivity.this, ConvertActivity.class)); // Open ConvertActivity
-                } else if (item.getItemId() == R.id.menu_logout) {
-                    logout();
-                }
-                return true; // Return true to indicate the item was selected
-            }
-        });
+        NavBar.setupBottomNav(bottomNavigationView, ConvertActivity.this);
 
 
         // Make the Retrofit call to get exchange rates
@@ -193,18 +179,4 @@ public class ConvertActivity extends AppCompatActivity {
         });
     }
 
-//    Logout function
-// Optional: Log out functionality
-public void logout() {
-    // Clear the saved user email from SharedPreferences
-    SharedPreferences sharedPreferences = getSharedPreferences("USER_PREF", MODE_PRIVATE);
-    SharedPreferences.Editor editor = sharedPreferences.edit();
-    editor.remove("USER_EMAIL");  // Remove the stored email
-    editor.apply();  // Commit the changes
-
-    // Navigate to MainActivity (or any other screen)
-    Intent intent = new Intent(ConvertActivity.this, MainActivity.class);
-    startActivity(intent);
-    finish();  // Optionally finish the current activity
-}
 }

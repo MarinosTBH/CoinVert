@@ -1,13 +1,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/menu_profile"
-        android:title="Profile"
-        android:icon="@drawable/profile" />
 
     <item
         android:id="@+id/menu_convert"
         android:title="Convert"
         android:icon="@drawable/convert_icon" />
+    <item
+        android:id="@+id/menu_compare"
+        android:title="Compare"
+        android:icon="@drawable/compare" />
+    <item
+        android:id="@+id/menu_profile"
+        android:title="Profile"
+        android:icon="@drawable/profile" />
 
     <item
         android:id="@+id/menu_logout"

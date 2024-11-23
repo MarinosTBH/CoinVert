@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CoinVert</string>
+    <string name="currency_comparison_for">Currency Comparison For :</string>
 </resources>

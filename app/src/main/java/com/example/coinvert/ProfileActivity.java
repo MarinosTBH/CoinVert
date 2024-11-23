@@ -2,26 +2,22 @@ package com.example.coinvert;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.coinvert.model.User;
 import com.example.coinvert.model.UserDao;
 import com.example.coinvert.database.DatabaseClient;
-import com.example.coinvert.database.AppDatabase;
+import com.example.coinvert.utils.NavBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.ByteArrayOutputStream;
@@ -72,24 +68,9 @@ public class ProfileActivity extends AppCompatActivity {
         // Change image button click listener
         profileImageView.setOnClickListener(v -> openImagePicker());
 
-        // Find the BottomNavigationView
+        // Handle Navigation through bottom navbar
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
-
-        // Set the listener for bottom navigation item clicks
-        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                // Handle item selection
-                if (item.getItemId() == R.id.menu_profile) {
-                    startActivity(new Intent(ProfileActivity.this, ProfileActivity.class)); // Open ProfileActivity
-                } else if (item.getItemId() == R.id.menu_convert) {
-                    startActivity(new Intent(ProfileActivity.this, ConvertActivity.class)); // Open ConvertActivity
-                } else if (item.getItemId() == R.id.menu_logout) {
-                    logout();
-                }
-                return true; // Return true to indicate the item was selected
-            }
-        });
+        NavBar.setupBottomNav(bottomNavigationView, ProfileActivity.this);
 
     }
 
@@ -141,9 +122,7 @@ public class ProfileActivity extends AppCompatActivity {
             // Retrieve the current user from the database
             User existingUser = userDao.findUserByEmail(userEmail);
             if (existingUser == null) {
-                runOnUiThread(() ->
-                        Toast.makeText(ProfileActivity.this, "User not found", Toast.LENGTH_SHORT).show()
-                );
+                runOnUiThread(() -> Toast.makeText(ProfileActivity.this, "User not found", Toast.LENGTH_SHORT).show());
                 return;
             }
 
@@ -167,9 +146,7 @@ public class ProfileActivity extends AppCompatActivity {
             // Update the database
             userDao.updateUser(existingUser);
 
-            runOnUiThread(() ->
-                    Toast.makeText(ProfileActivity.this, "Profile updated successfully", Toast.LENGTH_SHORT).show()
-            );
+            runOnUiThread(() -> Toast.makeText(ProfileActivity.this, "Profile updated successfully", Toast.LENGTH_SHORT).show());
         }).start();
     }
 
@@ -202,18 +179,4 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
-    //    Logout function
-// Optional: Log out functionality
-    public void logout() {
-        // Clear the saved user email from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("USER_PREF", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove("USER_EMAIL");  // Remove the stored email
-        editor.apply();  // Commit the changes
-
-        // Navigate to MainActivity (or any other screen)
-        Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
-        startActivity(intent);
-        finish();  // Optionally finish the current activity
-    }
 }

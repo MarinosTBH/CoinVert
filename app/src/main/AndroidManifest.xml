@@ -35,6 +35,8 @@
         <activity android:name=".ConvertActivity" />
         <!-- Profile Activity -->
         <activity android:name=".ProfileActivity"/>
+        <!-- Compare Activity -->
+        <activity android:name=".CompareActivity"/>
 
     </application>
 

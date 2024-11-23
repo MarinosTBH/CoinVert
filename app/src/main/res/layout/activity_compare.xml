@@ -1,0 +1,93 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor">
+
+    <!-- Content Layout (can be LinearLayout or other layouts) -->
+    <LinearLayout
+        android:id="@+id/contentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Title Section -->
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:paddingBottom="8dp"
+            android:text="@string/currency_comparison_for"
+            android:textColor="#304FFF"
+            android:textSize="23sp"
+            android:textStyle="bold" />
+
+        <!-- Dropdown (Spinner) for currency selection -->
+        <Spinner
+            android:id="@+id/currencySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/primaryColor"
+            android:spinnerMode="dropdown" />
+
+        <!-- Strongest Currencies Section -->
+        <TextView
+            android:id="@+id/strongestCurrenciesLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:paddingBottom="16dp"
+            android:text="Strongest Currencies"
+            android:textColor="@color/strongColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/strongestCurrenciesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:paddingBottom="16dp"
+            android:text="Strongest Currencies"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <!-- Weakest Currencies Section -->
+        <TextView
+            android:id="@+id/weakestCurrenciesTextLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:paddingBottom="16dp"
+            android:text="Weakest Currencies"
+            android:textColor="@color/weakColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/weakestCurrenciesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:paddingBottom="16dp"
+            android:text="Weakest Currencies"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:menu="@layout/bottom_navigation_menu" />
+</FrameLayout>
