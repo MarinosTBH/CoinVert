@@ -1,64 +1,65 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:padding="16dp">
 
     <!-- Title -->
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Currency Converter"
-        android:textSize="34sp"
-        android:textColor="#304FFF"
         android:fontFamily="sans-serif-medium"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:text="Currency Converter"
+        android:textColor="#304FFF"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Subtitle -->
     <TextView
         android:id="@+id/subtitleTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
         android:text="Check live rates, set rate alerts, receive notifications and more."
         android:textSize="20sp"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/titleTextView"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView" />
 
     <!-- Amount Section -->
     <androidx.cardview.widget.CardView
         android:id="@+id/amountCardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/subtitleTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
+        app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
-        app:cardCornerRadius="8dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitleTextView">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="16dp"
-            android:gravity="center_vertical">
+            android:padding="16dp">
 
             <Spinner
                 android:id="@+id/currencySpinnerFrom"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
+
             <EditText
                 android:id="@+id/fromAmountTextView"
                 android:layout_width="100dp"
@@ -82,22 +83,22 @@
         android:layout_height="56dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/convert_icon"
-        app:layout_constraintTop_toBottomOf="@id/amountCardView"
-        app:layout_constraintStart_toStartOf="parent"
         android:backgroundTint="#304FFF"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/amountCardView" />
 
     <!-- Converted Amount Section -->
     <androidx.cardview.widget.CardView
         android:id="@+id/convertedAmountCardView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/convertButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
+        app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
-        app:cardCornerRadius="8dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/convertButton">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -111,9 +112,9 @@
                 android:id="@+id/currencySpinnerTo"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/convertedAmountTextView"
@@ -123,9 +124,9 @@
                 android:layout_marginEnd="16dp"
                 android:fontFamily="sans-serif"
                 android:gravity="end"
+                android:inputType="numberDecimal"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintWidth_default="wrap" />
         </LinearLayout>
@@ -136,11 +137,22 @@
         android:id="@+id/exchangeRateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Indicative Exchange Rate\n"
-        android:textSize="16sp"
+        android:layout_marginTop="20dp"
         android:gravity="start"
-        app:layout_constraintTop_toBottomOf="@id/convertedAmountCardView"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:text="Indicative Exchange Rate: \n"
+        android:textColor="#b8b8b8"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/convertedAmountCardView" />
+
+
+ <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@layout/bottom_navigation_menu" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

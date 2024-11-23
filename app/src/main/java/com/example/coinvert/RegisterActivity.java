@@ -56,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
                 runOnUiThread(() -> Toast.makeText(this, "Email already registered", Toast.LENGTH_SHORT).show());
             } else {
                 // Create and insert new user
-                User newUser = new User(email, password);
+                User newUser = new User(email, password, null, null);
                 userDao.insertUser(newUser);
 
                 runOnUiThread(() -> {

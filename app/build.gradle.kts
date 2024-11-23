@@ -38,10 +38,12 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.room.common)
+    implementation("com.squareup.retrofit2:retrofit:2.9.0") // library to handle HTTP requests
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0") // library to handle HTTP requests
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation("androidx.room:room-runtime:2.5.2")
-    annotationProcessor("androidx.room:room-compiler:2.5.2") // For Java
-
+    implementation("androidx.room:room-runtime:2.5.2") // Database library For Java
+    annotationProcessor("androidx.room:room-compiler:2.5.2") // Database library For Java
+    implementation("com.google.android.material:material:1.8.0") // or the latest version
 }

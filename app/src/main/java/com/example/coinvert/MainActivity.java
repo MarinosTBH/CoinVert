@@ -1,6 +1,7 @@
 package com.example.coinvert;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,11 +22,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        // Check if the user is already logged in
+        SharedPreferences sharedPreferences = getSharedPreferences("USER_PREF", MODE_PRIVATE);
+        String userEmail = sharedPreferences.getString("USER_EMAIL", null);  // Retrieve the saved email
+
+        if (userEmail != null) {
+            // If the user is already logged in, navigate to WelcomeActivity
+            Intent intent = new Intent(MainActivity.this, ConvertActivity.class);
+            intent.putExtra("USER_NAME", userEmail);
+            startActivity(intent);
+            finish();  // Close MainActivity to prevent going back to it
+        }
+
+
         // Initialize the database
         AppDatabase db = DatabaseClient.getInstance(getApplicationContext());
 
         // Access the DAO
         UserDao userDao = db.userDao();
+
+
 
         // Get references to UI components
         EditText emailEditText = findViewById(R.id.emailEditText);
@@ -50,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
                     if (user != null && user.password.equals(password)) {
                         // Login successful
                         Toast.makeText(MainActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
+
+                        // Save user email locally in SharedPreferences
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("USER_EMAIL", user.email);  // Save the email
+                        editor.apply();  // Commit the changes
 
                         // Navigate to WelcomeActivity
                         Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);

@@ -24,7 +24,10 @@ public class DatabaseClient {
             synchronized (DatabaseClient.class) {
                 if (instance == null) {
                     instance = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class, "coinvert-db").build();
+                            AppDatabase.class, "coinvert-db")
+//                            .addMigrations(Migration1To2.MIGRATION_1_2)  // Add migration here
+                            .fallbackToDestructiveMigration()  // Allow destructive migration
+                            .build();
                 }
             }
         }

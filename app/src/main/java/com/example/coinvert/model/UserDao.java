@@ -9,6 +9,7 @@ import java.util.List;
 
 @Dao
 public interface UserDao {
+
     @Insert
     void insertUser(User user);
 
@@ -18,6 +19,6 @@ public interface UserDao {
     @Query("SELECT * FROM User WHERE email = :email LIMIT 1")
     User findUserByEmail(String email);
 
-    @Update()
+    @Update
     void updateUser(User user);
 }

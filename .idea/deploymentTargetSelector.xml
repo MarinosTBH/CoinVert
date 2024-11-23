@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-11-23T13:12:11.921570506Z">
+        <DropdownSelection timestamp="2024-11-23T17:02:13.274302660Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=/home/alchemycode/.android/avd/Android_emulator.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=RF8M80S0L1A" />
             </handle>
           </Target>
         </DropdownSelection>
