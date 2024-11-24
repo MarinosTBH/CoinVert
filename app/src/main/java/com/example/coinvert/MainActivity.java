@@ -2,7 +2,11 @@ package com.example.coinvert;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,6 +25,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Color customization
+        TextView textView = findViewById(R.id.brandTextView);
+
+        // Define the custom colors
+        int blueColor = Color.parseColor("#304FFF");
+        int greenColor = Color.parseColor("#6D009688"); // Replace with your custom green color if needed
+
+        SpannableString spannable = new SpannableString("Log in to CoinVert");
+
+        // Style "Coin" in blue
+        ForegroundColorSpan blueSpan = new ForegroundColorSpan(blueColor);
+        spannable.setSpan(blueSpan, 10, 14, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        // Style "Vert" in green
+        ForegroundColorSpan greenSpan = new ForegroundColorSpan(greenColor);
+        spannable.setSpan(greenSpan, 14, 18, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        textView.setText(spannable);
 
 
         // Check if the user is already logged in
@@ -41,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Access the DAO
         UserDao userDao = db.userDao();
-
 
 
         // Get references to UI components

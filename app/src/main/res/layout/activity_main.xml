@@ -6,6 +6,7 @@
     android:gravity="center">
 
     <TextView
+        android:id="@+id/brandTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
@@ -40,6 +41,7 @@
     <Button
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:backgroundTint="#304fff"
         android:text="Log in" />
@@ -48,6 +50,7 @@
         android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:backgroundTint="#6D009688"
         android:text="Go to Register"
         android:textColorLink="#3F51B5" />

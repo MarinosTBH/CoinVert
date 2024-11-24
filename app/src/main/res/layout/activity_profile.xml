@@ -5,27 +5,52 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor">
 
+    <!-- Configuration Gadget (Top-Right Corner) -->
+
+
+    <!-- ScrollView for Profile Content -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="651dp"> <!-- Adjust for bottom navigation -->
 
         <LinearLayout
             android:id="@+id/contentLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
-
-            <TextView
-                android:id="@+id/profileTitle"
-                android:layout_width="wrap_content"
+            <!-- Profile Title -->
+            <LinearLayout
+                android:id="@+id/headerLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:text="Profile"
-                android:textColor="#304FFF"
-                android:textSize="34sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:padding="8dp">
 
+                <!-- Profile Title -->
+                <TextView
+                    android:id="@+id/profileTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="20dp"
+                    android:text="Profile"
+                    android:textColor="#304FFF"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+
+                <!-- Configuration Gadget -->
+                <ImageView
+                    android:id="@+id/configGadget"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="Settings"
+                    android:src="@drawable/gear"
+                    app:tint="@color/black" />
+            </LinearLayout>
+
+            <!-- Profile Avatar -->
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/profileAvatar"
                 android:layout_width="140dp"
@@ -37,7 +62,7 @@
                 app:strokeColor="@color/black"
                 app:strokeWidth="2dp" />
 
-
+            <!-- Name Field -->
             <TextView
                 android:id="@+id/profileNameLabel"
                 android:layout_width="wrap_content"
@@ -54,6 +79,7 @@
                 android:hint="Enter name"
                 android:textSize="16sp" />
 
+            <!-- Email Field -->
             <TextView
                 android:id="@+id/profileEmailLabel"
                 android:layout_width="wrap_content"
@@ -70,7 +96,7 @@
                 android:hint="Enter email"
                 android:textSize="16sp" />
 
-            <!-- Password input field -->
+            <!-- Password Fields -->
             <TextView
                 android:id="@+id/profileOldPasswordLabel"
                 android:layout_width="wrap_content"
@@ -87,7 +113,6 @@
                 android:hint="Password"
                 android:inputType="textPassword" />
 
-            <!-- Confirm Password input field -->
             <TextView
                 android:id="@+id/confirmPasswordLabel"
                 android:layout_width="wrap_content"
@@ -104,6 +129,7 @@
                 android:hint="Confirm Password"
                 android:inputType="textPassword" />
 
+            <!-- Save Changes Button -->
             <Button
                 android:id="@+id/saveProfileButton"
                 android:layout_width="match_parent"
@@ -115,7 +141,6 @@
 
         </LinearLayout>
     </ScrollView>
-
 
     <!-- Bottom Navigation View -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

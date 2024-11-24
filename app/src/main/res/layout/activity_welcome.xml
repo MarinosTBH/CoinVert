@@ -14,7 +14,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="393dp"
         app:srcCompat="@drawable/screenshot_from_2024_11_23_02_33_56" />
 
     <TextView

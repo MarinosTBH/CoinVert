@@ -3,149 +3,159 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    >
+    android:background="@color/white">
 
-    <!-- Title -->
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:gravity="center"
-        android:text="Currency Converter"
-        android:textColor="#304FFF"
-        android:textSize="34sp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+        <!-- Title -->
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="Currency Converter"
+            android:textColor="#304FFF"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Subtitle -->
-    <TextView
-        android:id="@+id/subtitleTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:text="Check live rates, set rate alerts, receive notifications and more."
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTextView" />
+        <!-- Subtitle -->
+        <TextView
+            android:id="@+id/subtitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Check live rates, set rate alerts, receive notifications and more."
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleTextView" />
 
-    <!-- Amount Section -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/amountCardView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subtitleTextView">
-
-        <LinearLayout
+        <!-- Amount Section -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/amountCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="16dp">
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/subtitleTextView">
 
-            <Spinner
-                android:id="@+id/currencySpinnerFrom"
-                android:layout_width="150dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
 
-            <EditText
-                android:id="@+id/fromAmountTextView"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="sans-serif"
-                android:gravity="end"
-                android:inputType="numberDecimal"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintWidth_default="wrap" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                <Spinner
+                    android:id="@+id/currencySpinnerFrom"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Conversion Button -->
-    <ImageButton
-        android:id="@+id/convertButton"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/convert_icon"
-        android:backgroundTint="#304FFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/amountCardView" />
+                <EditText
+                    android:id="@+id/fromAmountTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="end"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintWidth_default="wrap" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-    <!-- Converted Amount Section -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/convertedAmountCardView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/convertButton">
+        <!-- Conversion Button -->
 
-        <LinearLayout
+        <!-- Converted Amount Section -->
+        <ImageButton
+            android:id="@+id/convertButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/convert_icon"
+            android:backgroundTint="#304FFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/amountCardView" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/convertedAmountCardView"
             android:layout_width="match_parent"
-            android:layout_height="74dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="16dp">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/convertButton">
 
-            <!-- Currency Dropdown -->
-            <Spinner
-                android:id="@+id/currencySpinnerTo"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
 
-            <EditText
-                android:id="@+id/convertedAmountTextView"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="sans-serif"
-                android:gravity="end"
-                android:inputType="numberDecimal"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintWidth_default="wrap" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                <!-- Currency Dropdown -->
+                <Spinner
+                    android:id="@+id/currencySpinnerTo"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Indicative Exchange Rate -->
-    <TextView
-        android:id="@+id/exchangeRateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="start"
-        android:text="Indicative Exchange Rate: \n"
-        android:textColor="#b8b8b8"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/convertedAmountCardView" />
+                <EditText
+                    android:id="@+id/convertedAmountTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="end"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintWidth_default="wrap" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
+        <!-- Indicative Exchange Rate -->
+        <TextView
+            android:id="@+id/exchangeRateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="start"
+            android:text="Indicative Exchange Rate: \n"
+            android:textColor="#b8b8b8"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/convertedAmountCardView" />
+
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_view"

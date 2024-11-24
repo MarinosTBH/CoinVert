@@ -3,8 +3,8 @@ package com.example.coinvert;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,23 +25,33 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+
 public class CompareActivity extends AppCompatActivity {
 
     private static final String TAG = "CompareActivity";
     private static final String API_KEY = "d4da29424f4cb2241bae0066";
     private Retrofit retrofit;
 
-    private TextView strongestTextView, weakestTextView;
-    private Spinner currencySpinner;
+    private ListView currencyListView, strongestCurrenciesListView, weakestCurrenciesListView;
+    private EditText currencySearchInput;
+
+    private List<String> currencyList;
+    private ArrayAdapter<String> currencyAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compare);
 
-        strongestTextView = findViewById(R.id.strongestCurrenciesTextView);
-        weakestTextView = findViewById(R.id.weakestCurrenciesTextView);
-        currencySpinner = findViewById(R.id.currencySpinner);
+        currencyListView = findViewById(R.id.currencyListView);
+        currencySearchInput = findViewById(R.id.currencySearchInput);
+        strongestCurrenciesListView = findViewById(R.id.strongestCurrenciesListView);
+        weakestCurrenciesListView = findViewById(R.id.weakestCurrenciesListView);
 
         // Initialize Retrofit
         retrofit = new Retrofit.Builder()
@@ -49,28 +59,52 @@ public class CompareActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())  // JSON parsing
                 .build();
 
-        setupCurrencySpinner();
+        initializeCurrencyList();
+        setupSearchInput();
         setupBottomNavBar();
     }
 
-    private void setupCurrencySpinner() {
+    private void initializeCurrencyList() {
         // Predefined list of popular currencies
-        String[] currencies = {"TND", "USD", "EUR", "GBP", "JPY", "AUD", "CAD"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, currencies);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        currencySpinner.setAdapter(adapter);
+        currencyList = new ArrayList<>();
+        currencyList.add("TND");
+        currencyList.add("USD");
+        currencyList.add("EUR");
+        currencyList.add("GBP");
+        currencyList.add("JPY");
+        currencyList.add("AUD");
+        currencyList.add("CAD");
+        currencyList.add("CHF");
+        currencyList.add("CNY");
+        currencyList.add("HKD");
+        currencyList.add("INR");
+        currencyList.add("NZD");
 
-        // Fetch exchange rates whenever a new currency is selected
-        currencySpinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
+        // Set adapter for the ListView
+        currencyAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, currencyList);
+        currencyListView.setAdapter(currencyAdapter);
+
+        // Handle currency selection
+        currencyListView.setOnItemClickListener((parent, view, position, id) -> {
+            String selectedCurrency = currencyAdapter.getItem(position);
+            fetchExchangeRates(selectedCurrency);
+        });
+    }
+
+    private void setupSearchInput() {
+        // Filter currency list based on input
+        currencySearchInput.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onItemSelected(android.widget.AdapterView<?> parent, android.view.View view, int position, long id) {
-                String selectedCurrency = currencies[position];
-                fetchExchangeRates(selectedCurrency);
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             @Override
-            public void onNothingSelected(android.widget.AdapterView<?> parent) {
-                // Default action if nothing is selected
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                currencyAdapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
     }
@@ -126,8 +160,8 @@ public class CompareActivity extends AppCompatActivity {
                 .map(entry -> entry.getKey() + ": " + entry.getValue())
                 .collect(Collectors.toList());
 
-        // Update UI
-        strongestTextView.setText( String.join("\n", strongestCurrencies));
-        weakestTextView.setText(String.join("\n", weakestCurrencies));
+        // Update ListView for strongest and weakest currencies
+        strongestCurrenciesListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strongestCurrencies));
+        weakestCurrenciesListView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, weakestCurrencies));
     }
 }

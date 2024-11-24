@@ -25,15 +25,21 @@
             android:textSize="23sp"
             android:textStyle="bold" />
 
-        <!-- Dropdown (Spinner) for currency selection -->
-        <Spinner
-            android:id="@+id/currencySpinner"
+        <!-- Search Input for Currency Selection -->
+        <EditText
+            android:id="@+id/currencySearchInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/primaryColor"
-            android:spinnerMode="dropdown" />
+            android:hint="Search Currency"
+            android:inputType="text" />
+
+        <!-- ListView for displaying filtered currencies -->
+        <ListView
+            android:id="@+id/currencyListView"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginBottom="16dp" />
+
 
         <!-- Strongest Currencies Section -->
         <TextView
@@ -41,45 +47,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:paddingBottom="16dp"
             android:text="Strongest Currencies"
             android:textColor="@color/strongColor"
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/strongestCurrenciesTextView"
+        <ListView
+            android:id="@+id/strongestCurrenciesListView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:paddingBottom="16dp"
-            android:text="Strongest Currencies"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:layout_height="209dp" />
 
         <!-- Weakest Currencies Section -->
         <TextView
             android:id="@+id/weakestCurrenciesTextLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:paddingBottom="16dp"
             android:text="Weakest Currencies"
             android:textColor="@color/weakColor"
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/weakestCurrenciesTextView"
+        <ListView
+            android:id="@+id/weakestCurrenciesListView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:paddingBottom="16dp"
-            android:text="Weakest Currencies"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:layout_height="202dp" />
 
     </LinearLayout>
 
